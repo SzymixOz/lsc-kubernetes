@@ -1,5 +1,4 @@
 # Commends to run the application:
-```
 ## Konfiguracja AWS CLI
 ```
 aws configure
@@ -44,9 +43,15 @@ kubectl get service nginx-service
 
 Diagram explanation:
 •	EKS Cluster: The foundational Kubernetes setup hosted on AWS using Elastic Kubernetes Service.
+
 •	NFS Server & Provisioner: Supplies a shared filesystem for Kubernetes pods through the NFS protocol. The provisioner ensures that PersistentVolumes (PVs) are created automatically based on demand.
+
 •	StorageClass (nfs): A template defining how dynamic volumes should be provisioned using the NFS backend.
+
 •	PersistentVolumeClaim (PVC): A resource used by applications to request specific storage space from the dynamically created NFS volumes.
+
 •	Deployment: Hosts a web server (such as nginx or Apache) with the NFS volume mounted to serve static content.
+
 •	Job: A one-time task that writes a static HTML file (like index.html) into the shared NFS-mounted volume for the web server to serve.
+
 •	Service: Makes the deployed web server accessible, either internally within the cluster or externally via a LoadBalancer.
